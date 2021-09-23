@@ -10,7 +10,7 @@ readoutnames.append('XeAe' + ending)
 # readoutnames.append('YeAe' + ending)
 
 # readoutnames.append('AeAe' + ending)
- 
+
 # readoutnames.append('AiAe' + ending)
 
 def computePopVector(popArray):
@@ -26,7 +26,7 @@ def get_2d_input_weights():
     num_values_col = n_e_sqrt*n_in_sqrt
     num_values_row = num_values_col
     rearranged_weights = np.zeros((num_values_col, num_values_row))
-        
+
     for i in xrange(n_e_sqrt):
         for j in xrange(n_e_sqrt):
                 rearranged_weights[i*n_in_sqrt : (i+1)*n_in_sqrt, j*n_in_sqrt : (j+1)*n_in_sqrt] = \
@@ -43,10 +43,10 @@ def plot_2d_input_weights():
     fig.canvas.draw()
     return im2, fig
 
-bright_grey = '#f4f4f4'    # 
-red   = '#ff0000'  # 
-green   = '#00ff00'  # 
-black   = '#000000'    # 
+bright_grey = '#f4f4f4'    #
+red   = '#ff0000'  #
+green   = '#00ff00'  #
+black   = '#000000'    #
 my_cmap = matplotlib.colors.LinearSegmentedColormap.from_list('own2',[bright_grey,black])
 
 n_input = 784
@@ -60,7 +60,7 @@ for name in readoutnames:
         value_arr = np.nan * np.ones((n_e, n_e))
     connection_parameters = readout
     #                 print connection_parameters
-    for conn in connection_parameters: 
+    for conn in connection_parameters:
     #                     print conn
         # don't need to pass offset as arg, now we store the parent projection
         src, tgt, value = conn
@@ -71,10 +71,10 @@ for name in readoutnames:
     if (name == 'YeAe' + ending):
         values = np.asarray(value_arr)#.transpose()
 	for i in xrange(n_e):
-            print values[i,i]
+            print(values[i,i])
     else:
         values = np.asarray(value_arr)
-        
+
     fi = figure()
 #     if name == 'AeAe' + ending or  name == 'HeHe' + ending or  name == 'AeHe' + ending or  name == 'BeHe' + ending \
 #         or  name == 'CeHe' + ending or  name == 'HeAe' + ending or  name == 'HeBe' + ending or  name == 'HeCe' + ending \
@@ -129,26 +129,26 @@ for name in readoutnames:
 
 # readout = np.loadtxt('H_A_E_E.txt')
 # for i in nEH:
-    
+
 im, fi = plot_2d_input_weights()
 savefig(str(fi.number))
-# 
-# 
+#
+#
 # from mpl_toolkits.mplot3d import Axes3D
 # point  = np.array([1, 2, 3])
 # normal = np.array([1, 1, 2])
-# 
+#
 # # a plane is a*x+b*y+c*z+d=0
 # # [a,b,c] is the normal. Thus, we have to calculate
 # # d and we're set
 # d = -point.dot(normal)
-# 
+#
 # # create x,y
 # xx, yy = np.meshgrid(range(200), range(200))
-# 
+#
 # # calculate corresponding z
 # z = (1 * xx + 1 * yy) % 200
-# 
+#
 # # plot the surface
 # plt3d = plt.figure().gca(projection='3d')
 # plt3d.plot_surface(xx, yy, z)
@@ -159,7 +159,7 @@ AA_sum = np.nansum(AA_values[0:n_e,0:n_e], axis = 0)/n_e
 fi = figure()
 plot(XA_sum, AA_sum, 'w.')
 for label, x, y in zip(range(200), XA_sum, AA_sum):
-    plt.annotate(label, 
+    plt.annotate(label,
                 xy = (x, y), xytext = (-0, 0),
                 textcoords = 'offset points', ha = 'right', va = 'bottom',
                 color = 'k')
@@ -169,6 +169,6 @@ savefig(str(fi.number))
 
 
 
-print 'done'
+print('done')
 
 show()
